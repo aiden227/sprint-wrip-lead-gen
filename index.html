@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WRIP Lead Gen - 15+ Qualified Sales Calls in 90 Days</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#2934FF',
+              navy: '#031457',
+              soft: '#8AA5FF',
+              cyan: '#99EEFF',
+              dark: '#121426',
+              black: '#000000',
+            },
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            body: ['Montserrat', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root {
+      --color-primary: #2934FF;
+      --color-primary-rgb: 41, 52, 255;
+      --color-navy: #031457;
+      --color-soft: #8AA5FF;
+      --color-cyan: #99EEFF;
+      --color-dark: #121426;
+      --color-black: #000000;
+      --color-white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000000;
+      color: #FFFFFF;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Hero radial glow */
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(41, 52, 255, 0.15) 0%, rgba(41, 52, 255, 0.05) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-glow-cyan {
+      position: absolute;
+      top: 20%;
+      right: 10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(153, 238, 255, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Glassmorphic card */
+    .glass-card {
+      background: rgba(18, 20, 38, 0.8);
+      border: 1px solid rgba(138, 165, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Form option button */
+    .form-option {
+      background: rgba(18, 20, 38, 0.6);
+      border: 1px solid rgba(138, 165, 255, 0.2);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .form-option:hover {
+      background: rgba(41, 52, 255, 0.15);
+      border-color: rgba(41, 52, 255, 0.5);
+    }
+    .form-option.selected {
+      background: rgba(41, 52, 255, 0.2);
+      border-color: #2934FF;
+      box-shadow: 0 0 20px rgba(41, 52, 255, 0.15);
+    }
+
+    /* Progress bar */
+    .progress-fill {
+      transition: width 0.3s ease;
+      background: linear-gradient(90deg, #2934FF, #8AA5FF);
+    }
+
+    /* FAQ accordion */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+      padding-bottom: 24px;
+    }
+    .faq-chevron {
+      transition: transform 0.3s ease;
+    }
+    .faq-chevron.rotated {
+      transform: rotate(180deg);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Step transitions */
+    .form-step {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .form-step.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Logo marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      animation: marquee 25s linear infinite;
+    }
+
+    /* Subtle grid background */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(138, 165, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(138, 165, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Button glow */
+    .btn-glow {
+      box-shadow: 0 0 30px rgba(41, 52, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 40px rgba(41, 52, 255, 0.5);
+      transform: translateY(-1px);
+    }
+
+    /* Input styles */
+    .form-input {
+      background: rgba(18, 20, 38, 0.6);
+      border: 1px solid rgba(138, 165, 255, 0.2);
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      transition: border-color 0.2s ease;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #2934FF;
+      box-shadow: 0 0 0 3px rgba(41, 52, 255, 0.15);
+    }
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Proof card hover */
+    .proof-card {
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .proof-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(138, 165, 255, 0.3);
+    }
+
+    /* Video placeholder */
+    .video-placeholder {
+      position: relative;
+      background: linear-gradient(135deg, #121426, #0a0c1a);
+      border: 1px solid rgba(138, 165, 255, 0.15);
+    }
+    .video-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      background: rgba(41, 52, 255, 0.9);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 55% center;
+      background-size: 32px;
+      box-shadow: 0 0 40px rgba(41, 52, 255, 0.4);
+    }
+  </style>
+</head>
+<body class="grid-bg">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="/" class="flex items-center">
+          <img src="images/logo-primary.png" alt="WRIP Lead Gen" class="h-5 sm:h-6 w-auto">
+        </a>
+        <a href="#qualify" class="bg-brand-navy hover:bg-brand-blue text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition-all duration-300">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex flex-col items-center justify-start pt-28 sm:pt-32 pb-16 px-4 overflow-hidden">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-cyan"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <!-- Callout -->
+      <div class="inline-flex items-center gap-2 bg-brand-dark/80 border border-brand-soft/20 rounded-full px-4 py-2 mb-6">
+        <span class="w-2 h-2 bg-brand-cyan rounded-full animate-pulse"></span>
+        <span class="text-sm text-brand-soft font-medium">Attention B2B founders doing $50K+/month:</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold leading-[1.1] mb-5 tracking-tight">
+        We Guarantee <span class="text-brand-soft">15+ Qualified Sales Calls</span> on Your Calendar in 90 Days Using Our Done-for-You LinkedIn + X System
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-lg sm:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Or you don't pay for month 4. All from 1 hour of your time per month.
+      </p>
+
+      <!-- VSL Video Placeholder -->
+      <div class="max-w-3xl mx-auto mb-10">
+        <div class="video-placeholder aspect-video rounded-2xl overflow-hidden wistia-embed" id="hero-vsl">
+          <!-- Wistia embed goes here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Qualification Form -->
+    <div class="relative z-10 w-full max-w-xl mx-auto" id="qualify">
+      <div class="glass-card rounded-2xl p-6 sm:p-8">
+        <!-- Form Header -->
+        <div class="text-center mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold mb-2">See If You Qualify</h2>
+          <p class="text-white/50 text-sm">Answer a few quick questions to find out if the Allbound System is right for your business.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs text-brand-soft font-medium" data-step-text>Step 1 of 5</span>
+            <span class="text-xs text-white/30" data-step-text-alt></span>
+          </div>
+          <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full progress-fill rounded-full" data-progress style="width: 20%"></div>
+          </div>
+        </div>
+
+        <!-- Form Steps -->
+        <div id="hero-form">
+          <!-- Step 1 -->
+          <div class="form-step active" data-step="0">
+            <p class="text-base font-medium mb-4 text-white/90">What best describes your business?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Agency / Consultancy">Agency / Consultancy</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="SaaS / Tech">SaaS / Tech</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Professional Services">Professional Services</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Info-Products / Coaching">Info-Products / Coaching</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Other">Other</button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="form-step" data-step="1">
+            <p class="text-base font-medium mb-4 text-white/90">What's your current monthly revenue?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Under $50K/mo">Under $50K/mo</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="$50K - $100K/mo">$50K - $100K/mo</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="$100K - $250K/mo">$100K - $250K/mo</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="$250K+/mo">$250K+/mo</button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="form-step" data-step="2">
+            <p class="text-base font-medium mb-4 text-white/90">What's your biggest challenge with client acquisition right now?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="I depend on referrals and it's inconsistent">I depend on referrals and it's inconsistent</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="I post but it doesn't generate leads">I post but it doesn't generate leads</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="I've tried agencies and been disappointed">I've tried agencies and been disappointed</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="I don't have time to do content + outreach myself">I don't have time to do content + outreach myself</button>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="form-step" data-step="3">
+            <p class="text-base font-medium mb-4 text-white/90">How soon are you looking to solve this?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Immediately">Immediately</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Within 30 days">Within 30 days</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Within 90 days">Within 90 days</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option data-value="Just exploring">Just exploring</button>
+            </div>
+          </div>
+
+          <!-- Step 5: Contact Info -->
+          <div class="form-step" data-step="4">
+            <p class="text-base font-medium mb-4 text-white/90">Almost there. Where should we send your call details?</p>
+            <form id="hero-contact-form" class="grid gap-4">
+              <div class="grid grid-cols-2 gap-4">
+                <input type="text" name="firstName" placeholder="First Name" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+                <input type="text" name="lastName" placeholder="Last Name" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+              </div>
+              <input type="email" name="email" placeholder="Email" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+              <input type="tel" name="phone" placeholder="Phone" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+              <button type="submit" class="w-full bg-brand-blue hover:bg-blue-600 text-white font-semibold py-4 rounded-xl text-base btn-glow mt-2 transition-all duration-300">
+                Book Your Strategy Call
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo Proof Bar -->
+  <section class="py-10 border-t border-b border-white/5 overflow-hidden">
+    <div class="relative">
+      <div class="flex animate-marquee whitespace-nowrap items-center">
+        <div class="flex items-center gap-12 mx-6">
+          <img src="images/client-brand-mediaengine.png" alt="TheMediaEngine" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-chewonthis.png" alt="ChewOnThis" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-creativeos.png" alt="CreativeOS" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-nordmedia.png" alt="NordMedia" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-goodmonster.png" alt="Good Monster" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-jamdesk.png" alt="Jamdesk" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-welucid.png" alt="WeLucid" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-astrapixel.png" alt="astrapixel" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-otherside.png" alt="OTHERSIDE" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-pmdigital.png" alt="PM Digital Design" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+        </div>
+        <div class="flex items-center gap-12 mx-6">
+          <img src="images/client-brand-mediaengine.png" alt="TheMediaEngine" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-chewonthis.png" alt="ChewOnThis" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-creativeos.png" alt="CreativeOS" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-nordmedia.png" alt="NordMedia" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-goodmonster.png" alt="Good Monster" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-jamdesk.png" alt="Jamdesk" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-welucid.png" alt="WeLucid" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-astrapixel.png" alt="astrapixel" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-otherside.png" alt="OTHERSIDE" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+          <img src="images/client-logo-pmdigital.png" alt="PM Digital Design" class="h-8 opacity-60 hover:opacity-100 transition-opacity">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Section -->
+  <section class="py-20 sm:py-28 px-4" id="proof">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">Results From Founders Like You</h2>
+        <p class="text-white/50 text-base max-w-xl mx-auto">Real numbers. Real clients. No fluff.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Case Study Card 1 - Tim Yakubson -->
+        <div class="glass-card rounded-2xl p-6 proof-card reveal col-span-1 lg:col-span-2">
+          <div class="flex items-start gap-4 mb-4">
+            <img src="images/client-headshot-02.jpg" alt="Tim Yakubson" class="w-12 h-12 rounded-full object-cover border-2 border-brand-soft/20">
+            <div>
+              <h3 class="font-semibold text-base">Tim Yakubson</h3>
+              <p class="text-brand-soft text-xs">TheMediaEngine</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="bg-white/5 rounded-xl p-3 text-center">
+              <p class="text-xl sm:text-2xl font-bold text-brand-cyan">20K</p>
+              <p class="text-xs text-white/40">Followers</p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-3 text-center">
+              <p class="text-xl sm:text-2xl font-bold text-brand-cyan">200-500</p>
+              <p class="text-xs text-white/40">Comments/Post</p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-3 text-center">
+              <p class="text-xl sm:text-2xl font-bold text-brand-cyan">10.7K</p>
+              <p class="text-xs text-white/40">Impressions</p>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 leading-relaxed">Active LinkedIn presence but no system converting engagement into pipeline. After deploying the Allbound System - interview-driven content, lead magnets, personalized DM outbound across LinkedIn and X. Consistent qualified pipeline from LinkedIn.</p>
+          <p class="text-xs text-white/30 mt-3 italic">Results vary based on individual effort, offer, and market conditions.</p>
+        </div>
+
+        <!-- LinkedIn Post Screenshot -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card reveal">
+          <img src="images/social-proof-graphic.png" alt="Tim Yakubson - 10,718 impressions, 114 comments" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">LinkedIn Post</p>
+            <p class="text-sm text-white/60 mt-1">10,718 impressions, 114 comments on a single post.</p>
+          </div>
+        </div>
+
+        <!-- Case Study Card 2 - Bill Gates' Daughter -->
+        <div class="glass-card rounded-2xl p-6 proof-card reveal">
+          <div class="flex items-start gap-4 mb-4">
+            <img src="images/client-headshot-03.jpg" alt="Meta Ads Agency" class="w-12 h-12 rounded-full object-cover border-2 border-brand-soft/20">
+            <div>
+              <h3 class="font-semibold text-base">Meta Ads Agency</h3>
+              <p class="text-brand-soft text-xs">E-Commerce</p>
+            </div>
+          </div>
+          <div class="bg-white/5 rounded-xl p-3 text-center mb-4">
+            <p class="text-base font-bold text-brand-cyan">Signed Bill Gates' Daughter's Company</p>
+            <p class="text-xs text-white/40 mt-1">Month 2 of the engagement</p>
+          </div>
+          <p class="text-sm text-white/60 leading-relaxed">Running a successful Meta ads agency for e-com brands but invisible on LinkedIn. No inbound pipeline. Deployed the Allbound System - authority content plus personalized DM outbound.</p>
+          <p class="text-xs text-white/30 mt-3 italic">Results vary based on individual effort, offer, and market conditions.</p>
+        </div>
+
+        <!-- Evan Seech Testimonial -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card reveal">
+          <img src="images/content-graphic-01.png" alt="Evan Seech - Best agency ever" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">Client Message</p>
+            <p class="text-sm text-white/60 mt-1">"Yall are the best agency I have ever paid. Highest ROI."</p>
+          </div>
+        </div>
+
+        <!-- X/Twitter Analytics -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card reveal">
+          <img src="images/ui-screenshot-01.png" alt="X/Twitter analytics showing engagement spike" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">Client Analytics</p>
+            <p class="text-sm text-white/60 mt-1">Engagement spike after WRIP deployed the Allbound System. 1.4M impressions. 72.4K engagements.</p>
+          </div>
+        </div>
+
+        <!-- $8K Retainer Close -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card reveal">
+          <img src="images/results-graphic-01.png" alt="$8K monthly retainer close" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">DM Result</p>
+            <p class="text-sm text-white/60 mt-1">$8K monthly retainer closed through personalized DM outbound.</p>
+          </div>
+        </div>
+
+        <!-- $3K Result Mobile -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card reveal">
+          <div class="max-h-[400px] overflow-hidden flex justify-center">
+            <img src="images/mobile-screenshot.png" alt="$3K result DM conversation" class="w-auto h-full max-h-[400px] object-contain">
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">DM Result</p>
+            <p class="text-sm text-white/60 mt-1">"The big 3k" - client result from personalized outbound.</p>
+          </div>
+        </div>
+
+        <!-- Metric Card - Calls Booked -->
+        <div class="glass-card rounded-2xl p-6 proof-card reveal flex flex-col justify-center items-center text-center">
+          <div class="w-16 h-16 bg-brand-blue/20 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          </div>
+          <p class="text-3xl font-bold text-brand-cyan mb-1">Hundreds</p>
+          <p class="text-sm text-white/50">of booked calls with 7-9 figure companies</p>
+        </div>
+
+        <!-- Metric Card - Dual Platform -->
+        <div class="glass-card rounded-2xl p-6 proof-card reveal flex flex-col justify-center items-center text-center">
+          <div class="w-16 h-16 bg-brand-blue/20 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <p class="text-3xl font-bold text-brand-cyan mb-1">LinkedIn + X</p>
+          <p class="text-sm text-white/50">Most agencies only do one. We run both.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 sm:py-28 px-4" id="faq">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">Common Questions</h2>
+      </div>
+
+      <div class="space-y-3 reveal">
+        <!-- FAQ 1 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">How is this different from the ghostwriter I already tried?</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            Most ghostwriting agencies skim your website and hand it to a VA. We work from a real 45-minute conversation every month. Your stories, your insights, your actual words. Aidan personally QAs every piece of content before it ships. If it doesn't sound like you, it doesn't go out. We've written for founders in SaaS, e-com, recruiting, consulting - and the process is the same. One round of QA on the first batch. After that, most clients approve with zero edits by month two.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">I've tried content before and got zero leads. Why would this work?</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            Content alone doesn't book calls. It builds authority but it doesn't convert. One of our prospects had lead magnets getting 2,000 comments and zero leads because the backend didn't exist - no email capture, no DM follow-up, no conversion system. We run the full system: content for authority, lead magnets for hand-raises, personalized DMs for conversion. That's the difference between impressions and pipeline.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">How much time does this take from me?</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            45 minutes to one hour per month. One interview where we extract your stories and expertise. We handle everything from there - writing, posting, DMs, lead magnets, prospect list building, inbox management. Month one has an additional 20-30 minutes of QA on the first batch. After that, voice is dialed and QA drops to under 10 minutes. Voice notes work if you can't hop on the monthly call.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">What if I already have a content agency or ghostwriter?</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            We replace the ghostwriter, the content agency, the DM tool, and the outbound service. One system, one payment, one team. You don't need to double spend. Most clients who switch to us were paying for separate tools and agencies that didn't talk to each other. We run the full pipeline end-to-end.
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">How long before I see booked calls?</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            Month one is testing - we're figuring out what angles work, dialing in your voice, and running the first rounds of personalized outbound. DMs generate conversations faster than content alone. Most clients see booked calls start coming in by month two. Month three is where the system compounds - you're hammering what's proven. One of our clients signed Bill Gates' daughter's company as a client in month two. The founders who get the most out of this commit to 90 days. Results vary based on offer and market.
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">What's included in the guarantee?</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            If we don't book at least 15 qualified sales calls on your calendar in the first 90 days, your 4th month is completely free. We keep working until we hit the number. A "qualified booked call" means the prospect fits your ICP, has expressed interest in your service, and has confirmed a specific date and time. The guarantee requires you to hold up your end - complete your monthly interviews, approve content within 48 hours, and respond to warm leads within 24 hours.
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">Do you use AI to write the content?</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            Full transparency - we use AI as a tool, like every smart operator does. But the writing is human. The voice is human. The stories are yours. Every post is written from a real interview, not a prompt. Go look at our clients' accounts. You won't be able to tell it's ghostwritten. That's the standard.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 sm:py-28 px-4 relative overflow-hidden" id="final-cta">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-blue/5 to-transparent pointer-events-none"></div>
+    <div class="max-w-xl mx-auto relative z-10">
+      <div class="text-center mb-10 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">Ready to Fill Your Calendar?</h2>
+        <p class="text-white/50 text-base max-w-lg mx-auto leading-relaxed">Book a call with Aidan. He'll ask about your business, show you how the Allbound System maps to your situation, and you'll figure out if it's a fit. If it is, you start that week.</p>
+      </div>
+
+      <!-- Second Form Instance -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 reveal">
+        <div class="text-center mb-6">
+          <h3 class="text-xl font-bold mb-2">See If You Qualify</h3>
+          <p class="text-white/50 text-sm">Answer a few quick questions to find out if the Allbound System is right for your business.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs text-brand-soft font-medium" data-step-text-2>Step 1 of 5</span>
+          </div>
+          <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full progress-fill rounded-full" data-progress-2 style="width: 20%"></div>
+          </div>
+        </div>
+
+        <div id="cta-form">
+          <!-- Step 1 -->
+          <div class="form-step-2 active" data-step-2="0">
+            <p class="text-base font-medium mb-4 text-white/90">What best describes your business?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Agency / Consultancy">Agency / Consultancy</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="SaaS / Tech">SaaS / Tech</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Professional Services">Professional Services</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Info-Products / Coaching">Info-Products / Coaching</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Other">Other</button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="form-step-2" data-step-2="1" style="display:none;opacity:0;">
+            <p class="text-base font-medium mb-4 text-white/90">What's your current monthly revenue?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Under $50K/mo">Under $50K/mo</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="$50K - $100K/mo">$50K - $100K/mo</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="$100K - $250K/mo">$100K - $250K/mo</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="$250K+/mo">$250K+/mo</button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="form-step-2" data-step-2="2" style="display:none;opacity:0;">
+            <p class="text-base font-medium mb-4 text-white/90">What's your biggest challenge with client acquisition right now?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="I depend on referrals and it's inconsistent">I depend on referrals and it's inconsistent</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="I post but it doesn't generate leads">I post but it doesn't generate leads</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="I've tried agencies and been disappointed">I've tried agencies and been disappointed</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="I don't have time to do content + outreach myself">I don't have time to do content + outreach myself</button>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="form-step-2" data-step-2="3" style="display:none;opacity:0;">
+            <p class="text-base font-medium mb-4 text-white/90">How soon are you looking to solve this?</p>
+            <div class="grid gap-3">
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Immediately">Immediately</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Within 30 days">Within 30 days</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Within 90 days">Within 90 days</button>
+              <button class="form-option rounded-xl px-5 py-4 text-left text-sm font-medium text-white/80" data-option-2 data-value="Just exploring">Just exploring</button>
+            </div>
+          </div>
+
+          <!-- Step 5: Contact Info -->
+          <div class="form-step-2" data-step-2="4" style="display:none;opacity:0;">
+            <p class="text-base font-medium mb-4 text-white/90">Almost there. Where should we send your call details?</p>
+            <form id="cta-contact-form" class="grid gap-4">
+              <div class="grid grid-cols-2 gap-4">
+                <input type="text" name="firstName" placeholder="First Name" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+                <input type="text" name="lastName" placeholder="Last Name" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+              </div>
+              <input type="email" name="email" placeholder="Email" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+              <input type="tel" name="phone" placeholder="Phone" required class="form-input rounded-xl px-4 py-3.5 text-sm w-full">
+              <button type="submit" class="w-full bg-brand-blue hover:bg-blue-600 text-white font-semibold py-4 rounded-xl text-base btn-glow mt-2 transition-all duration-300">
+                Book Your Strategy Call
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-12 sm:py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <!-- Logo & Description -->
+        <div class="md:col-span-2">
+          <img src="images/logo-primary.png" alt="WRIP Lead Gen" class="h-6 mb-4">
+          <p class="text-sm text-white/40 leading-relaxed max-w-sm">Done-for-you LinkedIn and X content, lead magnets, and personalized DM appointment setting for B2B founders doing $50K+/month.</p>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-xs font-semibold text-white/30 uppercase tracking-wider mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm text-white/50">
+            <li><a href="mailto:aidancollins@acocopywrite.com" class="hover:text-brand-soft transition-colors">aidancollins@acocopywrite.com</a></li>
+            <li><a href="tel:+18587535588" class="hover:text-brand-soft transition-colors">(858) 753-5588</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <h4 class="text-xs font-semibold text-white/30 uppercase tracking-wider mb-4">Connect</h4>
+          <ul class="space-y-3 text-sm text-white/50">
+            <li><a href="#" class="hover:text-brand-soft transition-colors">LinkedIn</a></li>
+            <li><a href="#" class="hover:text-brand-soft transition-colors">Twitter / X</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/20">&copy; 2026 WRIP Lead Gen. All rights reserved.</p>
+        <p class="text-xs text-white/20">This site is not a part of the LinkedIn or X website or LinkedIn or X Inc. Additionally, this site is NOT endorsed by LinkedIn or X in any way.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =============================================
+    // Multi-step Form - Hero
+    // =============================================
+    (function() {
+      const steps = document.querySelectorAll('#hero-form .form-step');
+      const totalSteps = steps.length;
+      let currentStep = 0;
+      const formData = {};
+
+      function showStep(index) {
+        steps.forEach((step, i) => {
+          if (i === index) {
+            step.style.display = 'block';
+            setTimeout(() => { step.style.opacity = '1'; }, 10);
+            step.classList.add('active');
+          } else {
+            step.style.opacity = '0';
+            step.classList.remove('active');
+            setTimeout(() => { step.style.display = 'none'; }, 250);
+          }
+        });
+        const progressBar = document.querySelector('[data-progress]');
+        const stepText = document.querySelector('[data-step-text]');
+        if (progressBar) progressBar.style.width = ((index + 1) / totalSteps * 100) + '%';
+        if (stepText) stepText.textContent = 'Step ' + (index + 1) + ' of ' + totalSteps;
+      }
+
+      document.querySelectorAll('#hero-form [data-option]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const stepEl = btn.closest('.form-step');
+          stepEl.querySelectorAll('[data-option]').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          const stepIndex = parseInt(stepEl.getAttribute('data-step'));
+          formData['step_' + stepIndex] = btn.getAttribute('data-value');
+          setTimeout(() => {
+            currentStep++;
+            showStep(currentStep);
+          }, 250);
+        });
+      });
+
+      const contactForm = document.getElementById('hero-contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const fd = new FormData(contactForm);
+          fd.forEach((val, key) => { formData[key] = val; });
+          window.location.href = '/confirmation';
+        });
+      }
+    })();
+
+    // =============================================
+    // Multi-step Form - CTA (Second instance)
+    // =============================================
+    (function() {
+      const steps = document.querySelectorAll('#cta-form .form-step-2');
+      const totalSteps = steps.length;
+      let currentStep = 0;
+      const formData = {};
+
+      function showStep(index) {
+        steps.forEach((step, i) => {
+          if (i === index) {
+            step.style.display = 'block';
+            setTimeout(() => { step.style.opacity = '1'; }, 10);
+            step.classList.add('active');
+          } else {
+            step.style.opacity = '0';
+            step.classList.remove('active');
+            setTimeout(() => { step.style.display = 'none'; }, 250);
+          }
+        });
+        const progressBar = document.querySelector('[data-progress-2]');
+        const stepText = document.querySelector('[data-step-text-2]');
+        if (progressBar) progressBar.style.width = ((index + 1) / totalSteps * 100) + '%';
+        if (stepText) stepText.textContent = 'Step ' + (index + 1) + ' of ' + totalSteps;
+      }
+
+      document.querySelectorAll('#cta-form [data-option-2]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const stepEl = btn.closest('.form-step-2');
+          stepEl.querySelectorAll('[data-option-2]').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          const stepIndex = parseInt(stepEl.getAttribute('data-step-2'));
+          formData['step_' + stepIndex] = btn.getAttribute('data-value');
+          setTimeout(() => {
+            currentStep++;
+            showStep(currentStep);
+          }, 250);
+        });
+      });
+
+      const contactForm = document.getElementById('cta-contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const fd = new FormData(contactForm);
+          fd.forEach((val, key) => { formData[key] = val; });
+          window.location.href = '/confirmation';
+        });
+      }
+    })();
+
+    // =============================================
+    // FAQ Accordion
+    // =============================================
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const chevron = btn.querySelector('.faq-chevron');
+      const isOpen = answer.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotated'));
+
+      if (!isOpen) {
+        answer.classList.add('open');
+        chevron.classList.add('rotated');
+      }
+    }
+
+    // =============================================
+    // Scroll Reveal
+    // =============================================
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // =============================================
+    // Navbar background on scroll
+    // =============================================
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(0, 0, 0, 0.85)';
+        nav.style.backdropFilter = 'blur(12px)';
+        nav.style.webkitBackdropFilter = 'blur(12px)';
+        nav.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.webkitBackdropFilter = 'none';
+        nav.style.borderBottom = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

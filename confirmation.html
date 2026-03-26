@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WRIP Lead Gen - Your Strategy Call Is Confirmed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#2934FF',
+              navy: '#031457',
+              soft: '#8AA5FF',
+              cyan: '#99EEFF',
+              dark: '#121426',
+              black: '#000000',
+            },
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            body: ['Montserrat', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root {
+      --color-primary: #2934FF;
+      --color-primary-rgb: 41, 52, 255;
+      --color-navy: #031457;
+      --color-soft: #8AA5FF;
+      --color-cyan: #99EEFF;
+      --color-dark: #121426;
+      --color-black: #000000;
+      --color-white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000000;
+      color: #FFFFFF;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Glassmorphic card */
+    .glass-card {
+      background: rgba(18, 20, 38, 0.8);
+      border: 1px solid rgba(138, 165, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Subtle grid background */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(138, 165, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(138, 165, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Button glow */
+    .btn-glow {
+      box-shadow: 0 0 30px rgba(41, 52, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 40px rgba(41, 52, 255, 0.5);
+      transform: translateY(-1px);
+    }
+
+    /* Checkmark animation */
+    @keyframes checkmarkScale {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(0.8); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .checkmark-container {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .checkmark-circle {
+      animation: checkmarkScale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+    }
+    .pulse-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid rgba(41, 52, 255, 0.4);
+      animation: pulseRing 2s ease-out infinite;
+    }
+    .fade-slide-in {
+      animation: fadeSlideIn 0.6s ease forwards;
+    }
+    .delay-1 { animation-delay: 0.4s; opacity: 0; }
+    .delay-2 { animation-delay: 0.6s; opacity: 0; }
+    .delay-3 { animation-delay: 0.8s; opacity: 0; }
+    .delay-4 { animation-delay: 1.0s; opacity: 0; }
+    .delay-5 { animation-delay: 1.2s; opacity: 0; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Video placeholder */
+    .video-placeholder {
+      position: relative;
+      background: linear-gradient(135deg, #121426, #0a0c1a);
+      border: 1px solid rgba(138, 165, 255, 0.15);
+    }
+    .video-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      background: rgba(41, 52, 255, 0.9);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 55% center;
+      background-size: 32px;
+      box-shadow: 0 0 40px rgba(41, 52, 255, 0.4);
+    }
+
+    /* Video card hover */
+    .video-card {
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(138, 165, 255, 0.3);
+    }
+
+    /* Proof card hover */
+    .proof-card {
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .proof-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(138, 165, 255, 0.3);
+    }
+
+    /* Hero glow */
+    .hero-glow {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(41, 52, 255, 0.12) 0%, rgba(41, 52, 255, 0.04) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Logo marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      animation: marquee 25s linear infinite;
+    }
+
+    /* Lightbox */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .lightbox-overlay.active {
+      display: flex;
+    }
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 12px;
+    }
+
+    /* FAQ accordion */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+      padding-bottom: 24px;
+    }
+    .faq-chevron {
+      transition: transform 0.3s ease;
+    }
+    .faq-chevron.rotated {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="grid-bg">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="/" class="flex items-center">
+          <img src="images/logo-primary.png" alt="WRIP Lead Gen" class="h-5 sm:h-6 w-auto">
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="hidden sm:inline-flex items-center gap-2 bg-brand-blue/20 border border-brand-blue/30 text-brand-soft text-xs font-medium px-3 py-1.5 rounded-full">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Application Received
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Confirmation Hero -->
+  <section class="relative min-h-screen flex flex-col items-center justify-start pt-28 sm:pt-32 pb-16 px-4 overflow-hidden">
+    <div class="hero-glow"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+      <!-- Animated Checkmark -->
+      <div class="checkmark-container mb-8 mx-auto" style="width: 80px; height: 80px;">
+        <div class="pulse-ring"></div>
+        <div class="checkmark-circle w-20 h-20 bg-brand-blue rounded-full flex items-center justify-center">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] mb-5 tracking-tight fade-slide-in delay-1">
+        Your Strategy Call Is Confirmed.
+      </h1>
+
+      <!-- Body -->
+      <p class="text-base sm:text-lg text-white/60 mb-10 max-w-2xl mx-auto leading-relaxed fade-slide-in delay-2">
+        You'll get a calendar invite and reminders by email and text. Between now and the call, watch the video below and complete your prep form. It takes five minutes and makes the call 10x more useful.
+      </p>
+
+      <!-- Hero Video -->
+      <div class="max-w-2xl mx-auto mb-8 fade-slide-in delay-3">
+        <div class="video-placeholder aspect-video rounded-2xl overflow-hidden wistia-embed" id="thankyou-video">
+          <!-- Wistia embed goes here -->
+        </div>
+      </div>
+
+      <!-- Primary CTA -->
+      <div class="fade-slide-in delay-4">
+        <a href="#" class="inline-block bg-brand-blue hover:bg-blue-600 text-white font-semibold py-4 px-8 rounded-xl text-base btn-glow transition-all duration-300">
+          Complete Your Prep Form (5 Minutes)
+        </a>
+        <p class="text-sm text-white/30 mt-3">Not the right time? <a href="#" class="text-brand-soft underline hover:text-white transition-colors">Reschedule here.</a></p>
+      </div>
+
+      <!-- What Happens Next -->
+      <div class="max-w-xl mx-auto mt-16 fade-slide-in delay-5">
+        <h3 class="text-lg font-semibold mb-6 text-white/80">What Happens Next</h3>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4 text-left">
+            <div class="w-8 h-8 bg-brand-blue/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-sm font-bold text-brand-soft">1</span>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white/80">Complete your prep form</p>
+              <p class="text-sm text-white/40">Takes 5 minutes. The more we know going in, the better the call.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 text-left">
+            <div class="w-8 h-8 bg-brand-blue/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-sm font-bold text-brand-soft">2</span>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white/80">Watch the breakout videos below</p>
+              <p class="text-sm text-white/40">Covers how the system works, common concerns, and what to expect.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 text-left">
+            <div class="w-8 h-8 bg-brand-blue/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-sm font-bold text-brand-soft">3</span>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white/80">Show up to your 45-minute strategy session</p>
+              <p class="text-sm text-white/40">Aidan will walk through how the Allbound System maps to your business.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo Proof Bar -->
+  <section class="py-8 border-t border-b border-white/5 overflow-hidden">
+    <div class="relative">
+      <div class="flex animate-marquee whitespace-nowrap items-center">
+        <div class="flex items-center gap-12 mx-6">
+          <img src="images/client-brand-mediaengine.png" alt="TheMediaEngine" class="h-7 opacity-50">
+          <img src="images/client-logo-chewonthis.png" alt="ChewOnThis" class="h-7 opacity-50">
+          <img src="images/client-logo-creativeos.png" alt="CreativeOS" class="h-7 opacity-50">
+          <img src="images/client-logo-nordmedia.png" alt="NordMedia" class="h-7 opacity-50">
+          <img src="images/client-logo-goodmonster.png" alt="Good Monster" class="h-7 opacity-50">
+          <img src="images/client-logo-jamdesk.png" alt="Jamdesk" class="h-7 opacity-50">
+          <img src="images/client-logo-welucid.png" alt="WeLucid" class="h-7 opacity-50">
+          <img src="images/client-logo-astrapixel.png" alt="astrapixel" class="h-7 opacity-50">
+          <img src="images/client-logo-otherside.png" alt="OTHERSIDE" class="h-7 opacity-50">
+          <img src="images/client-logo-pmdigital.png" alt="PM Digital Design" class="h-7 opacity-50">
+        </div>
+        <div class="flex items-center gap-12 mx-6">
+          <img src="images/client-brand-mediaengine.png" alt="TheMediaEngine" class="h-7 opacity-50">
+          <img src="images/client-logo-chewonthis.png" alt="ChewOnThis" class="h-7 opacity-50">
+          <img src="images/client-logo-creativeos.png" alt="CreativeOS" class="h-7 opacity-50">
+          <img src="images/client-logo-nordmedia.png" alt="NordMedia" class="h-7 opacity-50">
+          <img src="images/client-logo-goodmonster.png" alt="Good Monster" class="h-7 opacity-50">
+          <img src="images/client-logo-jamdesk.png" alt="Jamdesk" class="h-7 opacity-50">
+          <img src="images/client-logo-welucid.png" alt="WeLucid" class="h-7 opacity-50">
+          <img src="images/client-logo-astrapixel.png" alt="astrapixel" class="h-7 opacity-50">
+          <img src="images/client-logo-otherside.png" alt="OTHERSIDE" class="h-7 opacity-50">
+          <img src="images/client-logo-pmdigital.png" alt="PM Digital Design" class="h-7 opacity-50">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breakout Videos Section -->
+  <section class="py-20 sm:py-28 px-4" id="breakout-videos">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">Everything You Need to Know Before the Call</h2>
+        <p class="text-white/50 text-base max-w-xl mx-auto">Watch what's relevant. Skip what's not. Each video is under 5 minutes.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Video 1 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-brand-blue/20 text-brand-soft text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Pre-Call</span>
+            <h3 class="font-semibold text-base mb-1">Watch This Before Our Call</h3>
+            <p class="text-sm text-white/40 mb-4">What to expect on the strategy session and how to get the most out of it.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-red-500/20 text-red-400 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Qualifier</span>
+            <h3 class="font-semibold text-base mb-1">This Might Not Be for You</h3>
+            <p class="text-sm text-white/40 mb-4">Who this works for, who it doesn't, and how to know before the call.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-brand-cyan/20 text-brand-cyan text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Process</span>
+            <h3 class="font-semibold text-base mb-1">How We Book Calls in 3 Steps</h3>
+            <p class="text-sm text-white/40 mb-4">The exact Allbound System broken down in plain English.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-amber-500/20 text-amber-400 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Objection</span>
+            <h3 class="font-semibold text-base mb-1">"No One Can Write Like Me"</h3>
+            <p class="text-sm text-white/40 mb-4">How we nail your voice from a single interview. Real examples included.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 5 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-amber-500/20 text-amber-400 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Objection</span>
+            <h3 class="font-semibold text-base mb-1">2,000 Comments and Zero Leads</h3>
+            <p class="text-sm text-white/40 mb-4">Why content without a system behind it doesn't convert. And what does.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 6 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-green-500/20 text-green-400 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Time</span>
+            <h3 class="font-semibold text-base mb-1">One Hour a Month - That's It</h3>
+            <p class="text-sm text-white/40 mb-4">Exactly how much time this takes from you. Broken down week by week.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 7 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-amber-500/20 text-amber-400 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Objection</span>
+            <h3 class="font-semibold text-base mb-1">"My Industry Is Too Complex"</h3>
+            <p class="text-sm text-white/40 mb-4">How we've handled technical niches from AI-native ERP to e-com analytics.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 8 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-brand-cyan/20 text-brand-cyan text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Timeline</span>
+            <h3 class="font-semibold text-base mb-1">Month 1 vs Month 3 - Honest Timeline</h3>
+            <p class="text-sm text-white/40 mb-4">What month one actually looks like vs. what month three looks like. No BS.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Video 9 -->
+        <div class="glass-card rounded-2xl overflow-hidden video-card reveal">
+          <div class="video-placeholder aspect-video wistia-embed"></div>
+          <div class="p-5">
+            <span class="inline-block bg-brand-blue/20 text-brand-soft text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Prep</span>
+            <h3 class="font-semibold text-base mb-1">Do This Before We Meet</h3>
+            <p class="text-sm text-white/40 mb-4">What to bring to the call and how to prepare for a productive session.</p>
+            <a href="#" class="text-sm text-brand-soft font-medium hover:text-white transition-colors">Watch Now &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="py-20 sm:py-28 px-4 border-t border-white/5" id="timeline">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">What Happens Between Now and Your Call</h2>
+      </div>
+
+      <div class="space-y-0 reveal">
+        <div class="flex items-start gap-5 pb-8 relative">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center flex-shrink-0 z-10">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="w-0.5 h-full bg-white/10 absolute top-10 left-5"></div>
+          </div>
+          <div class="pt-1.5">
+            <p class="text-sm font-semibold text-brand-cyan mb-0.5">Right Now</p>
+            <p class="text-sm text-white/60">Complete your prep form (link above)</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5 pb-8 relative">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 bg-brand-dark border border-brand-soft/20 rounded-full flex items-center justify-center flex-shrink-0 z-10">
+              <svg class="w-5 h-5 text-brand-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <div class="w-0.5 h-full bg-white/10 absolute top-10 left-5"></div>
+          </div>
+          <div class="pt-1.5">
+            <p class="text-sm font-semibold text-white/80 mb-0.5">In 5 Minutes</p>
+            <p class="text-sm text-white/60">Confirmation email arrives with your Zoom link</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5 pb-8 relative">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 bg-brand-dark border border-brand-soft/20 rounded-full flex items-center justify-center flex-shrink-0 z-10">
+              <svg class="w-5 h-5 text-brand-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+            </div>
+            <div class="w-0.5 h-full bg-white/10 absolute top-10 left-5"></div>
+          </div>
+          <div class="pt-1.5">
+            <p class="text-sm font-semibold text-white/80 mb-0.5">48 Hours Before</p>
+            <p class="text-sm text-white/60">Reminder email with prep checklist</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5 pb-8 relative">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 bg-brand-dark border border-brand-soft/20 rounded-full flex items-center justify-center flex-shrink-0 z-10">
+              <svg class="w-5 h-5 text-brand-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            </div>
+            <div class="w-0.5 h-full bg-white/10 absolute top-10 left-5"></div>
+          </div>
+          <div class="pt-1.5">
+            <p class="text-sm font-semibold text-white/80 mb-0.5">24 Hours Before</p>
+            <p class="text-sm text-white/60">Text reminder with dial-in details</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5 pb-8 relative">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 bg-brand-dark border border-brand-soft/20 rounded-full flex items-center justify-center flex-shrink-0 z-10">
+              <svg class="w-5 h-5 text-brand-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <div class="w-0.5 h-full bg-white/10 absolute top-10 left-5"></div>
+          </div>
+          <div class="pt-1.5">
+            <p class="text-sm font-semibold text-white/80 mb-0.5">1 Hour Before</p>
+            <p class="text-sm text-white/60">Final reminder email</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-5">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center flex-shrink-0 z-10">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </div>
+          </div>
+          <div class="pt-1.5">
+            <p class="text-sm font-semibold text-brand-cyan mb-0.5">Call Time</p>
+            <p class="text-sm text-white/60">45-minute strategy session with Aidan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who This Is / Is Not For -->
+  <section class="py-20 sm:py-28 px-4 border-t border-white/5">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">Who This Is and Is Not For</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal">
+        <!-- For You -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </div>
+            <h3 class="font-semibold text-base text-green-400">This call is for you if:</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>You run a B2B business doing $50K/month or more in revenue</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>You're a founder, agency owner, consultant, recruiter, or service provider</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>Your buyers are on LinkedIn and you sell a service north of $2K</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>Your online presence doesn't match your actual ability - you're great at what you do but nobody knows it</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>You want a predictable pipeline that compounds, not referrals</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Not For You -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-red-500/20 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </div>
+            <h3 class="font-semibold text-base text-red-400">This call is not for you if:</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span>You're pre-revenue or under $50K/month</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span>You want a DIY course or templates - we're done-for-you only</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span>You need 10 calls by next Friday - the system compounds over 60-90 days</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span>You want automated outreach or AI-generated content - we're the opposite of that</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-white/60">
+              <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span>You're already paying two agencies for LinkedIn and aren't willing to consolidate</span>
+            </li>
+          </ul>
+          <p class="text-xs text-white/30 mt-6 italic">If any of the "not for you" criteria apply, please reschedule - this call won't be the right fit, and we'd rather save both of our time. <a href="#" class="text-brand-soft underline">Reschedule here.</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How the Allbound System Works -->
+  <section class="py-20 sm:py-28 px-4 border-t border-white/5">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">How the Allbound System Works</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14 reveal">
+        <!-- Step 1 -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 bg-brand-blue/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="text-xl font-bold text-brand-blue">1</span>
+          </div>
+          <h3 class="font-semibold text-base mb-3">Expert Extraction</h3>
+          <p class="text-sm text-white/50 leading-relaxed">One interview per month. 45 minutes to an hour. We pull out your real stories, insights, and expertise. This is the raw material for everything - content, lead magnets, and DM angles. No website scraping. No AI guessing. Your actual words.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 bg-brand-blue/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="text-xl font-bold text-brand-blue">2</span>
+          </div>
+          <h3 class="font-semibold text-base mb-3">Authority Content + Lead Magnets</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Human-written posts in your voice, posted consistently across LinkedIn and X. Lead magnets designed to go viral and convert cold attention into qualified hand-raises. Every piece is QAed by Aidan before it ships.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 bg-brand-blue/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="text-xl font-bold text-brand-blue">3</span>
+          </div>
+          <h3 class="font-semibold text-base mb-3">Personalized DM Outbound</h3>
+          <p class="text-sm text-white/50 leading-relaxed">100% manual. No automation, no templates. Every message written by a human for that specific person. Targeted to your ICP. Conversations that actually lead to booked calls because there's authority content backing up every DM.</p>
+        </div>
+      </div>
+
+      <!-- Mini Proof -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 reveal">
+        <div class="flex items-start gap-4 mb-4">
+          <img src="images/client-headshot-02.jpg" alt="Tim Yakubson" class="w-12 h-12 rounded-full object-cover border-2 border-brand-soft/20">
+          <div>
+            <p class="text-sm text-white/60 leading-relaxed">Tim at TheMediaEngine was posting on LinkedIn with no conversion system behind it. After deploying the Allbound System, he hit 20K followers with lead magnets pulling 200-500 comments each - converting into consistent pipeline because the backend exists. Another client signed Bill Gates' daughter's company as a client in month two of the system working.</p>
+            <p class="text-xs text-white/30 mt-3 italic">Results vary based on individual effort, offer, and market conditions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Objection Handling -->
+  <section class="py-20 sm:py-28 px-4 border-t border-white/5">
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-3 reveal">
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">"I've been burned by agencies before. How do I know this is different?"</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            Every prospect we talk to has the same story. The last agency used a VA who couldn't write in their voice. Or they used AI and hoped nobody noticed. Or they got 10 months of content and zero pipeline. We've booked calls with hundreds of 7-9 figure companies. Trusted by TheMediaEngine, ChewOnThis, CreativeOS, NordMedia. And the guarantee backs it up: 15+ qualified booked calls in 90 days or month 4 is free. If we don't deliver, we work for free until we do.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">"What if the content doesn't sound like me?"</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            This is the number one concern on every call. Fair. We write from a 45-minute conversation with you - not your website, not a brief, not a prompt. Aidan personally QAs every piece before it ships. First batch gets the most feedback - that's expected. After one round, most clients by month two are approving with zero edits. A SaaS founder with an AI-native ERP - most technical niche you can imagine - said the same thing. First batch needed adjustments. He sent a Loom, we hopped on a call, dialed it in. Smooth sailing from there.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm sm:text-base pr-4">"I don't have time for another agency."</span>
+            <svg class="faq-chevron w-5 h-5 text-brand-soft flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer px-6 text-sm text-white/60 leading-relaxed">
+            45 minutes to one hour per month. One interview. We handle everything else - writing, posting, DMs, lead magnets, prospect list building, inbox management, weekly reporting. You don't log into anything. Voice notes work if you can't hop on the monthly call. The whole point: your brand doesn't go dark just because you're heads-down on delivery.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before the Call (Logistics) -->
+  <section class="py-20 sm:py-28 px-4 border-t border-white/5">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">Before the Call</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 reveal">
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-10 h-10 bg-brand-blue/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">Bring</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Your current numbers - monthly revenue, how many clients you're closing, where they come from (referrals, cold email, ads, organic). What you've tried before. What you want solved.</p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-10 h-10 bg-brand-blue/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">Who Must Attend</h3>
+          <p class="text-sm text-white/50 leading-relaxed">If you make the decisions on marketing and growth, be on the call. If someone else needs to sign off, add them to the calendar invite now.</p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-10 h-10 bg-brand-blue/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">Technical</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Quiet environment, stable internet, screen-share capability.</p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-10 h-10 bg-brand-blue/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">Reschedule / Lateness</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Reschedule at least 24 hours in advance. Calls that start more than 10 minutes late will be rescheduled.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Gallery -->
+  <section class="py-20 sm:py-28 px-4 border-t border-white/5" id="testimonials">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">What Clients Are Saying</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+        <!-- Evan Seech DM -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card cursor-pointer" onclick="openLightbox(this.querySelector('img'))">
+          <img src="images/content-graphic-01.png" alt="Evan Seech - Best agency ever" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">Evan Seech</p>
+            <p class="text-sm text-white/50">"Yall are the best agency I have ever paid. Highest ROI."</p>
+          </div>
+        </div>
+
+        <!-- $8K Retainer -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card cursor-pointer" onclick="openLightbox(this.querySelector('img'))">
+          <img src="images/results-graphic-01.png" alt="$8K monthly retainer close" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">DM Result</p>
+            <p class="text-sm text-white/50">$8K monthly retainer closed through personalized outbound.</p>
+          </div>
+        </div>
+
+        <!-- $3K Result -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card cursor-pointer" onclick="openLightbox(this.querySelector('img'))">
+          <div class="max-h-[300px] overflow-hidden flex justify-center bg-brand-dark">
+            <img src="images/mobile-screenshot.png" alt="$3K result" class="w-auto h-full max-h-[300px] object-contain">
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">DM Result</p>
+            <p class="text-sm text-white/50">"The big 3k" - personalized outbound at work.</p>
+          </div>
+        </div>
+
+        <!-- Tim LinkedIn Post -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card cursor-pointer" onclick="openLightbox(this.querySelector('img'))">
+          <img src="images/social-proof-graphic.png" alt="Tim Yakubson LinkedIn post" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">Tim Yakubson</p>
+            <p class="text-sm text-white/50">10,718 impressions, 114 comments on a single post.</p>
+          </div>
+        </div>
+
+        <!-- X/Twitter Analytics -->
+        <div class="glass-card rounded-2xl overflow-hidden proof-card cursor-pointer col-span-1 sm:col-span-2" onclick="openLightbox(this.querySelector('img'))">
+          <img src="images/ui-screenshot-01.png" alt="X/Twitter analytics dashboard" class="w-full h-auto">
+          <div class="p-4">
+            <p class="text-xs text-brand-soft font-medium">Client Analytics</p>
+            <p class="text-sm text-white/50">1.4M impressions, 72.4K engagements, 5.1% engagement rate after deploying the Allbound System.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Phone Number Display -->
+  <section class="py-16 px-4 border-t border-white/5">
+    <div class="max-w-xl mx-auto text-center reveal">
+      <div class="glass-card rounded-2xl p-8">
+        <div class="w-14 h-14 bg-brand-blue/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+        </div>
+        <p class="text-base text-white/60 leading-relaxed">You'll get a text from our team at</p>
+        <p class="text-2xl font-bold text-brand-cyan mt-2 mb-2">(858) 753-5588</p>
+        <p class="text-sm text-white/40">Save this number so you know it's us.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 sm:py-28 px-4 border-t border-white/5 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-blue/5 to-transparent pointer-events-none"></div>
+    <div class="max-w-xl mx-auto text-center relative z-10 reveal">
+      <h2 class="text-3xl sm:text-4xl md:text-[44px] font-medium leading-tight mb-4">Complete Your Prep Before the Call</h2>
+      <p class="text-base text-white/50 mb-8 max-w-lg mx-auto leading-relaxed">The more we know going in, the more useful the call is. Five minutes now saves 15 minutes of background on the call.</p>
+      <a href="#" class="inline-block bg-brand-blue hover:bg-blue-600 text-white font-semibold py-4 px-8 rounded-xl text-base btn-glow transition-all duration-300">
+        Complete Your Prep Form
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-12 sm:py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-2">
+          <img src="images/logo-primary.png" alt="WRIP Lead Gen" class="h-6 mb-4">
+          <p class="text-sm text-white/40 leading-relaxed max-w-sm">Done-for-you LinkedIn and X content, lead magnets, and personalized DM appointment setting for B2B founders doing $50K+/month.</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-semibold text-white/30 uppercase tracking-wider mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm text-white/50">
+            <li><a href="mailto:aidancollins@acocopywrite.com" class="hover:text-brand-soft transition-colors">aidancollins@acocopywrite.com</a></li>
+            <li><a href="tel:+18587535588" class="hover:text-brand-soft transition-colors">(858) 753-5588</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-semibold text-white/30 uppercase tracking-wider mb-4">Connect</h4>
+          <ul class="space-y-3 text-sm text-white/50">
+            <li><a href="#" class="hover:text-brand-soft transition-colors">LinkedIn</a></li>
+            <li><a href="#" class="hover:text-brand-soft transition-colors">Twitter / X</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/20">&copy; 2026 WRIP Lead Gen. All rights reserved.</p>
+        <p class="text-xs text-white/20">This site is not a part of the LinkedIn or X website or LinkedIn or X Inc. Additionally, this site is NOT endorsed by LinkedIn or X in any way.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <img src="" alt="Full size view" id="lightbox-img">
+  </div>
+
+  <script>
+    // =============================================
+    // FAQ Accordion
+    // =============================================
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const chevron = btn.querySelector('.faq-chevron');
+      const isOpen = answer.classList.contains('open');
+
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotated'));
+
+      if (!isOpen) {
+        answer.classList.add('open');
+        chevron.classList.add('rotated');
+      }
+    }
+
+    // =============================================
+    // Lightbox
+    // =============================================
+    function openLightbox(imgEl) {
+      if (!imgEl) return;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imgEl.src;
+      lightboxImg.alt = imgEl.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // =============================================
+    // Scroll Reveal
+    // =============================================
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // =============================================
+    // Navbar background on scroll
+    // =============================================
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(0, 0, 0, 0.85)';
+        nav.style.backdropFilter = 'blur(12px)';
+        nav.style.webkitBackdropFilter = 'blur(12px)';
+        nav.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.webkitBackdropFilter = 'none';
+        nav.style.borderBottom = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
